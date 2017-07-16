@@ -1226,7 +1226,7 @@
     }, {
 
       getAnimator: function () {
-        return this.animator || this.setAnimator(Animator.create(SignPuppet.channels));
+        return this.animator || this.setAnimator(Animator.create(SignPuppet.defaultChannels));
       },
 
       setAnimator: function(animator) {
@@ -1239,13 +1239,13 @@
 
         channels = channels || (this.animator ? this.animator.channels : {});
 
-        for (k in SignPuppet.channels) {
+        for (k in SignPuppet.defaultChannels) {
           if (channels[k] === undefined) {
-            channels[k] = SignPuppet.channels[k];
+            channels[k] = SignPuppet.defaultChannels[k];
           }
         }
-        
-        
+
+
         w = w || canvas.width;
         h = h || canvas.height;
 
