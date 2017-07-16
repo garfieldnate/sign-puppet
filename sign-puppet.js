@@ -5,7 +5,7 @@
 
   /*
    * Animator
-   * 
+   *
    * manages a set of channels and tweens their values toward target values
    */
   Animator = {
@@ -16,6 +16,7 @@
       var k;
       this.target = {};
       this.channels = {};
+      this.minDelta = 1e-7;
       for (k in channels) {
         if (channels.hasOwnProperty(k)) {
           this.channels[k] = channels[k];
@@ -25,7 +26,15 @@
       tween: function() {
         var self = this;
         $.each(this.target, function(k, v) {
-          self.channels[k] += (v - self.channels[k]) / 2;
+          // move one half of the distance towards target
+          var delta = (v - self.channels[k]) / 2;
+          // if that's very small, just finish the move
+          // (otherwise we would tween forever)
+          if (delta < self.minDelta) {
+            self.channels[k] = v;
+          } else {
+            self.channels[k] += delta;
+          }
         });
       },
       setTarget: function(target) {
@@ -125,7 +134,7 @@
 
   /*
    * Graphics
-   * 
+   *
    * wraps the methods of the 2d canvas context for convenience
    */
   Graphics = {
@@ -210,7 +219,7 @@
 
   /*
    * Capsule Class
-   * 
+   *
    * renders to 2d simple shapes built from thick lines in 3d
    */
   Capsule = {
@@ -323,7 +332,7 @@
 
   /*
    * Eye Class
-   * 
+   *
    * renders a cartoon eye based on parameters
    */
   Eye = {
@@ -418,7 +427,7 @@
 
   /*
    * Mouth Class
-   * 
+   *
    * renders a cartoon mouth based on parameters
    */
   Mouth = {
@@ -497,7 +506,7 @@
 
   /*
    * Pose Class
-   * 
+   *
    * methods for rotating and moving sets of 3d points
    */
   Pose = {
@@ -685,40 +694,40 @@
 
   /*
    * SignPuppet Class
-   * 
+   *
    * main class for the humanoid puppet - building, posing and rendering
    */
   SignPuppet = {
-    channels: {
+    defaultChannels: {
       hrx: 0, hry: 0, bx:  0, by:  0,
-      
+
       eby: 0, ebx: 0, e0y: 1, e1y: 1,
       ex:  0, ey:  0, ez:  1,
-      
+
       ny:  0,
-      
+
       mx:  0, my:  0,
       mly: 0, mlz: 0, mty: 0, mtz: 0, mcx: 0,
       teeth: 0,
-      
+
       rhx:  0, rhy:   0, rhz:  0, rh:   0,
       rbx:  0, rby:   1, rbz:  0, rb:   1,
       rax:  0, ray:   0, raz:  0, ra:   0,
       rpx:  0, rpy:   0, rpz:  0,
       rrz:  0, rrx: -90, rry:  0,
-      
+
       ri0:  0, ri1:  0, ri2:  0, ris:  0,
       rm0:  0, rm1:  0, rm2:  0, rms:  0,
       rr0:  0, rr1:  0, rr2:  0, rrs:  0,
       rp0:  0, rp1:  0, rp2:  0, rps:  0,
       rt0x: 0, rt0y: 0, rt1x: 0, rt1y: 0, rt2x: 0,
-      
+
       lhx:  0, lhy:   0, lhz:  0, lh:   0,
       lbx:  0, lby:   1, lbz:  0, lb:   1,
       lax:  0, lay:   0, laz:  0, la:   0,
       lpx:  0, lpy:   0, lpz:  0,
       lrz:  0, lrx: -90, lry:  0,
-      
+
       li0:  0, li1:  0, li2:  0, lis:  0,
       lm0:  0, lm1:  0, lm2:  0, lms:  0,
       lr0:  0, lr1:  0, lr2:  0, lrs:  0,
