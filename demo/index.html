@@ -59,6 +59,22 @@
             <li><a href="#default_face">Default</a></li>
           </ul>
         </dd>
+        <dt>JSL hand shapes:</dt>
+        <dd>
+          <ul id="kana_poses" class="inline">
+            <li><a href="#1">人差指</a></li>
+            <li><a href="#s">握り拳</a></li>
+            <li><a href="#kana_ha">ハ型</a></li>
+            <li><a href="#kana_na">ナ型</a></li>
+            <li><a href="#kana_ni">ニ型</a></li>
+            <li><a href="#kana_ra">ラ型</a></li>
+            <li><a href="#kana_ma">マ型</a></li>
+            <li><a href="#kana_yo">ヨ型</a></li>
+            <li><a href="#kana_a">ア型</a></li>
+            <li><a href="#kana_c">Ｃ型</a></li>
+            <li><a href="#kana_kusuri">薬指</a></li>
+          </ul>
+        </dd>
       </dl>
       <br style="clear:both">
       <canvas id="the_canvas" width="600" height="400" style="margin:auto;display:block"></canvas>
@@ -91,9 +107,9 @@
           <label title="y coordinate of pivot point">rpy <input id="rpy" name="rpy" value="0"></label>
           <label title="z coordinate of pivot point">rpz <input id="rpz" name="rpz" value="0"></label>
           <br>
-          <label title="rotation around x axis">rrz <input id="rrz" name="rrz" value="-90"></label>
-          <label title="rotation around y axis">rrx <input id="rrx" name="rrx" value="90"></label>
-          <label title="rotation around z axis">rry <input id="rry" name="rry" value="0"></label>
+          <label title="rotation around x axis">rrx <input id="rrx" name="rrx" value="90"></label>
+          <label title="rotation around y axis">rry <input id="rry" name="rry" value="0"></label>
+          <label title="rotation around z axis">rrz <input id="rrz" name="rrz" value="-90"></label>
         </fieldset>
         <fieldset id="right_hand_pose">
           <label title="curl of proximal phalanx, index finger">ri0 <input id="ri0" name="ri0" value="0"></label>
@@ -119,7 +135,7 @@
           <label title="x axis rotation of proximal phalanx, thumb">rt0x <input id="rt0x" name="rt0x" value="-1"></label>
           <label title="y axis rotation of proximal phalanx, thumb">rt0y <input id="rt0y" name="rt0y" value="0"></label>
           <label title="x axis rotation of middle phalanx, thumb">rt1x <input id="rt1x" name="rt1x" value="-1"></label>
-          <label title="x axis rotation of middle phalanx, thumb">rt1y <input id="rt1y" name="rt1y" value="0"></label>
+          <label title="y axis rotation of middle phalanx, thumb">rt1y <input id="rt1y" name="rt1y" value="0"></label>
           <label title="x axis rotation of distal phalanx, thumb">rt2x <input id="rt2x" name="rt2x" value="0"></label>
         </fieldset>
         <fieldset id="left_hand_position">
@@ -142,9 +158,9 @@
           <label title="y coordinate of pivot point">lpy <input id="lpy" name="lpy" value="0"></label>
           <label title="z coordinate of pivot point">lpz <input id="lpz" name="lpz" value="0"></label>
           <br>
-          <label title="rotation around x axis">lrz <input id="lrz" name="lrz" value="-90"></label>
-          <label title="rotation around y axis">lrx <input id="lrx" name="lrx" value="90"></label>
-          <label title="rotation around z axis">lry <input id="lry" name="lry" value="0"></label>
+          <label title="rotation around x axis">lrx <input id="lrx" name="lrx" value="90"></label>
+          <label title="rotation around y axis">lry <input id="lry" name="lry" value="0"></label>
+          <label title="rotation around z axis">lrz <input id="lrz" name="lrz" value="-90"></label>
         </fieldset>
         <fieldset id="left_hand_pose">
           <label title="curl of proximal phalanx, index finger">li0 <input id="li0" name="li0" value="0"></label>
@@ -170,7 +186,7 @@
           <label title="x axis rotation of proximal phalanx, thumb">lt0x <input id="lt0x" name="lt0x" value="-1"></label>
           <label title="y axis rotation of proximal phalanx, thumb">lt0y <input id="lt0y" name="lt0y" value="0"></label>
           <label title="x axis rotation of middle phalanx, thumb">lt1x <input id="lt1x" name="lt1x" value="-1"></label>
-          <label title="x axis rotation of middle phalanx, thumb">lt1y <input id="lt1y" name="lt1y" value="0"></label>
+          <label title="y axis rotation of middle phalanx, thumb">lt1y <input id="lt1y" name="lt1y" value="0"></label>
           <label title="x axis rotation of distal phalanx, thumb">lt2x <input id="lt2x" name="lt2x" value="0"></label>
         </fieldset>
         <fieldset id="head_and_body">
@@ -339,6 +355,76 @@
           mtz : 1, mty : .25,
           teeth : 0
         },
+        kana_ha : {
+          ri0  : 0,    ri1  : 0, ri2  : 0,   ris  : 0,
+          rm0  : 0,    rm1  : 0, rm2  : 0, rms  : 0,
+          rr0  : 1,    rr1  : 1, rr2  : 0.5, rrs  : 0,
+          rp0  : 1,    rp1  : 1, rp2  : 0.5, rps  : 0,
+          rrx  : 0,    rry  : 0, rrz  : 0,
+          rt0x : -.75, rt0y: .5, rt1x : .75, rt1y: .5, rt2x : .25
+        },
+        kana_na : {
+          ri0  : 0,    ri1  : 0, ri2  : 0,   ris  : .5,
+          rm0  : 0,    rm1  : 0, rm2  : 0, rms  : -.5,
+          rr0  : 1,    rr1  : 1, rr2  : 0.5, rrs  : 0,
+          rp0  : 1,    rp1  : 1, rp2  : 0.5, rps  : 0,
+          rrx  : -90,    rry  : 0, rrz  : -90,
+          rt0x : -.75, rt0y: .5, rt1x : .75, rt1y: .5, rt2x : .25
+        },
+        kana_ni : {
+          ri0  : 0,    ri1  : 0, ri2  : 0,   ris  : .5,
+          rm0  : 0,    rm1  : 0, rm2  : 0, rms  : -.5,
+          rr0  : 1,    rr1  : 1, rr2  : 0.5, rrs  : 0,
+          rp0  : 1,    rp1  : 1, rp2  : 0.5, rps  : 0,
+          rrx  : 0,    rry  : 90, rrz  : 0,
+          rt0x : -.75, rt0y: .5, rt1x : .75, rt1y: .5, rt2x : .25
+        },
+        kana_ra : {
+          ri0  : 0,    ri1  : 0, ri2  : 0,   ris  : -1,
+          rm0  : 0,    rm1  : 0, rm2  : 0, rms  : 1,
+          rr0  : 1,    rr1  : 1, rr2  : 0.5, rrs  : 0,
+          rp0  : 1,    rp1  : 1, rp2  : 0.5, rps  : 0,
+          rrx  : 90,    rry  : 0, rrz  : -90,
+          rt0x : -.75, rt0y: .5, rt1x : .75, rt1y: .5, rt2x : .25
+        },
+        kana_ma : {
+          ri0  : 0,    ri1  : 0, ri2  : 0,   ris  : .75,
+          rm0  : 0,    rm1  : 0, rm2  : 0, rms  : 0,
+          rr0  : 0,    rr1  : 0, rr2  : 0, rrs  : 2,
+          rp0  : 1,    rp1  : 1, rp2  : 0.5, rps  : 0,
+          rrx  : -90,    rry  : 90, rrz  : 0,
+          rt0x : -.75, rt0y: .5, rt1x : .75, rt1y: .5, rt2x : .25
+        },
+        kana_yo : {
+          ri0  : 0,    ri1  : 0, ri2  : 0,   ris  : .5,
+          rm0  : 0,    rm1  : 0, rm2  : 0,   rms  : 1,
+          rr0  : 0,    rr1  : 0, rr2  : 0,   rrs  : 1,
+          rp0  : 0,    rp1  : 0, rp2  : 0,   rps  : 1,
+          rt0x : -.75, rt0y: .5, rt1x : .75, rt1y: .5, rt2x : .25
+        },
+        kana_a : {
+          ri0  : 1,  ri1  : .9, ri2 : .75, ris: -.1,
+          rm0  : 1,  rm1  : .9, rm2 : .75, rms: -.1,
+          rr0  : 1,  rr1  : .9, rr2 : .75, rrs: -.1,
+          rp0  : 1,  rp1  : .9, rp2 : .75, rps: -.1,
+          rt0x : -1, rt0y: .5, rt1x : -.5, rt1y: 0, rt2x : 0
+        },
+        kana_c : {
+          ri0  : .6,  ri1  : .4, ri2 : .4, ris: -.1,
+          rm0  : .6,  rm1  : .4, rm2 : .4, rms: -.1,
+          rr0  : .6,  rr1  : .4, rr2 : .4, rrs: -.1,
+          rp0  : .6,  rp1  : .4, rp2 : .4, rps: -.1,
+          rrx  : 90,    rry  : 90, rrz  : -90,
+          rt0x : .75, rt0y: 1.5, rt1x : .2, rt1y: .75, rt2x : .25
+        },
+        kana_kusuri : {
+          ri0  : 0,  ri1  : 0, ri2  : 0,  ris  : 1,
+          rm0  : 0,  rm1  : 0, rm2  : 0,  rms  : 1,
+          rr0  : 1,  rr1  : 0, rr2  : 0,  rrs  : 1,
+          rp0  : 0,  rp1  : 0, rp2  : 0,  rps  : 1,
+          rt0x : -1, rt0y : 0, rt1x : -1, rt1y : 0, rt2x : 0,
+          rrx  : 45, rry  : 0, rrz  : -90
+        }
       };
 
       var canvas = document.getElementById('the_canvas');
@@ -409,7 +495,7 @@
         });
 
         //other pose links
-        $('#hand_poses a, #face_poses a').each(function () {
+        $('#hand_poses a, #face_poses a, #kana_poses a').each(function () {
           $(this).click(function (e) {
             e.preventDefault();
             applyPose(poses[$(this).attr('href').substring(1)]);
@@ -417,7 +503,7 @@
           });
         });
       });
-      applyPose('default_pose');
+      applyPose(channels);
       animator.setTarget(channels);
     </script>
   </body>
