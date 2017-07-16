@@ -341,16 +341,6 @@
         },
       };
 
-      var animFrame = (function(){
-        return window.mozRequestAnimationFrame    ||
-          window.webkitRequestAnimationFrame ||
-          window.msRequestAnimationFrame     ||
-          window.oRequestAnimationFrame      ||
-          function(cb, el){
-            setTimeout(cb, 10);
-          };
-      }());
-
       var canvas = document.getElementById('the_canvas');
       var puppet = aslfont.SignPuppet.create();
       var animator = puppet.getAnimator();
@@ -358,7 +348,7 @@
 
       var loop, render;
       loop = function(){
-        animFrame(render, canvas);
+        requestAnimationFrame(render, canvas);
       };
       render = function(){
         canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
@@ -394,6 +384,8 @@
             var v = parseFloat($(this).val());
             if (!isNaN(v)) {
               channels[$(this).attr('id')] = v;
+            } else {
+              Console.log("input " + v + " is not a number")
             }
             animator.setTarget(channels);
           });
@@ -402,6 +394,8 @@
           var v = parseFloat($(this).val());
           if (!isNaN(v)) {
             channels[$(this).attr('id')] = v;
+          } else {
+              Console.log("input " + v + " is not a number")
           }
         });
 
